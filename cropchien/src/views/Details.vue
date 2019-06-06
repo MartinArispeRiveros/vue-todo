@@ -13,15 +13,33 @@
 </template>
 
 <script>
+import firebase from '../configFirebase.js'
 export default {
   props:{
-    dog:{
+    dogProp:{
       type:Object,
-      required:true
     }
   },
-  data(){
+  data() {
     return {
+      dog:undefined
+    }
+  },
+  mounted() {
+    if(!!this.dogProp){
+      this.dog = this.dogProp
+    }else{
+      const id = this.$route.params.id
+      firebase.db.doc(`dogs/${id}`).get().then((doc) => {
+        if (doc.exists) {
+          this.dog = doc.data();
+        } else {
+            // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
     }
   }
 }

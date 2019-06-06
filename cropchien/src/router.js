@@ -12,12 +12,12 @@ export default new Router({
     {
       path: '/details/:id',
       name: 'details',
-      props:true,
+      props: true,
       component: () => import('@/views/Details.vue')
     },
     {
-      path: '/post',
-      name: 'post',
+      path: '/post-dog',
+      name: 'post-dog',
       component: () => import('@/views/Post.vue')
     }
   ]
