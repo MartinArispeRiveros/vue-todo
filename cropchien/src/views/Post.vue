@@ -31,6 +31,12 @@ import axios from 'axios'
 import postDog from './mixins/postDog.js'
 import Post from "@/models/Post";
 export default {
+  props:{
+    pictureUrl: {
+      default: '',
+      type: String
+    }
+  },
    data() {
     return {
       post: null,
@@ -47,14 +53,20 @@ export default {
   },
   beforeMount() {
     this.post = new Post();
-    axios.get('https://dog.ceo/api/breed/appenzeller/images/random').then(response => {
-      if (response.data.status) {
-        this.dogUrl = response.data.message;
-        this.loading = false;
-      } else {
-        // console.log("Error getting image")
-      }
-    })
+    if (this.pictureUrl !== '') {
+      console.log('this.pictureUrl', this.pictureUrl);
+      this.dogUrl = this.pictureUrl;
+      this.loading = false;
+    } else { 
+      axios.get('https://dog.ceo/api/breed/appenzeller/images/random').then(response => {
+        if (response.data.status) {
+          this.dogUrl = response.data.message;
+          this.loading = false;
+        } else {
+          // console.log("Error getting image")
+        }
+      })
+    }
   },
 }
 </script>

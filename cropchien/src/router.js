@@ -18,7 +18,13 @@ export default new Router({
     {
       path: '/post-dog',
       name: 'post-dog',
+      props: true,
       component: () => import('@/views/Post.vue')
+    },
+    {
+      path: '/camera',
+      name: 'camera',
+      component: () => import('@/components/Camera.vue')
     }
   ]
 })
