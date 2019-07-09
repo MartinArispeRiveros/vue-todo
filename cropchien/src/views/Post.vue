@@ -54,7 +54,6 @@ export default {
   beforeMount() {
     this.post = new Post();
     if (this.pictureUrl !== '') {
-      console.log('this.pictureUrl', this.pictureUrl);
       this.dogUrl = this.pictureUrl;
       this.loading = false;
     } else { 

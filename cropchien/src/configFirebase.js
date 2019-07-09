@@ -18,6 +18,7 @@ firebase.initializeApp(config)
 
 // Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
+let messaging = firebase.messaging();
 
 // Disable deprecated features
 db.settings({
@@ -30,5 +31,6 @@ const storage = firebase.storage()
 
 export default {
   db,
-  storage
+  storage,
+  messaging
 }
